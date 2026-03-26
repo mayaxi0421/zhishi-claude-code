@@ -15,93 +15,93 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 88rpx 32rpx 52rpx;
+  padding: 80rpx 32rpx 48rpx;
 
   &--healthy {
-    background: linear-gradient(160deg, #0C1E0E 0%, #1E4D34 45%, #3D7A5A 100%);
+    background: linear-gradient(180deg, #E4F2EA 0%, #F0F8F3 100%);
   }
 
   &--chronic {
-    background: linear-gradient(160deg, #1A253A 0%, #2A3E6A 50%, #4A62A8 100%);
+    background: linear-gradient(180deg, #E8EEF8 0%, #F2F5FB 100%);
   }
 }
 
 .prf-avatar {
-  width: 136rpx;
-  height: 136rpx;
+  width: 128rpx;
+  height: 128rpx;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(61, 122, 90, 0.10);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20rpx;
-  border: 2rpx solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.25);
+  margin-bottom: 18rpx;
+  border: 1.5rpx solid rgba(61, 122, 90, 0.20);
 }
 
-.prf-avatar-emoji { font-size: 72rpx; }
+.prf-avatar-emoji { font-size: 68rpx; }
 
 .prf-name {
   font-family: var(--font-serif);
-  font-size: 42rpx;
+  font-size: 40rpx;
   font-weight: 700;
-  color: #F0ECE0;
+  color: var(--text);
   margin-bottom: 8rpx;
-  letter-spacing: 2rpx;
+  letter-spacing: 1rpx;
 }
 
 .prf-streak-badge {
   display: inline-flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1rpx solid rgba(255, 255, 255, 0.25);
+  background: rgba(61, 122, 90, 0.08);
+  border: 1rpx solid rgba(61, 122, 90, 0.20);
   border-radius: 40rpx;
-  padding: 8rpx 24rpx;
-  margin-bottom: 16rpx;
+  padding: 8rpx 22rpx;
+  margin-bottom: 14rpx;
 }
 .prf-streak-text {
-  font-size: 24rpx;
-  color: #FDE68A;
+  font-size: 23rpx;
+  color: var(--green-d);
   font-weight: 600;
-  letter-spacing: 1rpx;
+  letter-spacing: 0.5rpx;
 }
 
 .prf-join {
   font-size: 22rpx;
-  color: rgba(240, 236, 224, 0.6);
-  margin-bottom: 24rpx;
-  letter-spacing: 1rpx;
+  color: var(--text3);
+  margin-bottom: 20rpx;
 }
 
 .prf-hero-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 12rpx;
+  gap: 10rpx;
   justify-content: center;
   margin-top: 4rpx;
 }
 
 .prf-hero-tag {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1rpx solid rgba(255, 255, 255, 0.22);
+  background: rgba(74, 122, 176, 0.08);
+  border: 1rpx solid rgba(74, 122, 176, 0.20);
   border-radius: 999rpx;
-  padding: 8rpx 20rpx;
+  padding: 7rpx 18rpx;
 }
 
 .prf-hero-tag-text {
-  color: rgba(240, 236, 224, 0.85);
-  font-size: 22rpx;
+  color: #4A7AB0;
+  font-size: 21rpx;
+  font-weight: 500;
 }
 
 // ── Stats row — oversized data figures ────────────────────
 .prf-stats-row {
   display: flex;
   background: var(--card);
-  margin: 0 32rpx;
-  border-radius: 36rpx;
-  margin-top: -28rpx;
-  padding: 32rpx 0;
-  box-shadow: var(--shadow-md);
+  margin: 0 28rpx;
+  border-radius: 28rpx;
+  margin-top: -24rpx;
+  padding: 28rpx 0;
+  box-shadow: var(--shadow);
+  border: 1rpx solid var(--border);
   z-index: 2;
   position: relative;
 }
@@ -145,10 +145,10 @@
 // ── Section cards ─────────────────────────────────────────
 .prf-section-card {
   background: var(--card);
-  border-radius: 36rpx;
-  margin: 24rpx 32rpx 0;
-  padding: 36rpx;
-  box-shadow: var(--shadow);
+  border-radius: 28rpx;
+  margin: 20rpx 28rpx 0;
+  padding: 32rpx;
+  border: 1rpx solid var(--border);
 }
 
 .prf-section-title {
@@ -354,18 +354,17 @@
 }
 
 .prf-log-btn {
-  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  background: var(--green);
   border-radius: 18rpx;
   padding: 22rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 28rpx;
-  box-shadow: 0 6rpx 20rpx rgba(30, 77, 52, 0.25);
 }
 
 .prf-log-btn-text {
-  color: #F0ECE0;
+  color: #FFFFFF;
   font-size: 28rpx;
   font-weight: 600;
   letter-spacing: 1rpx;
@@ -487,11 +486,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, #E8F4ED, #D8EEE2);
-  border: 1rpx solid rgba(61, 122, 90, 0.3);
-  border-radius: 36rpx;
-  margin: 24rpx 32rpx 0;
-  padding: 32rpx;
+  background: var(--card);
+  border: 1rpx solid var(--border);
+  border-radius: 28rpx;
+  margin: 20rpx 28rpx 0;
+  padding: 28rpx 32rpx;
 }
 
 .prf-chat-left {
@@ -505,22 +504,21 @@
 .prf-chat-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #0C1E0E;
+  color: var(--text);
   display: block;
   margin-bottom: 4rpx;
 }
 
-.prf-chat-sub { font-size: 22rpx; color: #2A5038; }
+.prf-chat-sub { font-size: 22rpx; color: var(--text2); }
 
 .prf-chat-btn {
-  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  background: var(--green);
   border-radius: 999rpx;
   padding: 16rpx 32rpx;
   flex-shrink: 0;
-  box-shadow: 0 4rpx 16rpx rgba(30, 77, 52, 0.3);
 }
 
-.prf-chat-btn-text { color: #F0ECE0; font-size: 26rpx; font-weight: 600; }
+.prf-chat-btn-text { color: #FFFFFF; font-size: 26rpx; font-weight: 600; }
 
 .prf-bottom-space { height: 48rpx; }
 
@@ -540,13 +538,12 @@
 
 .prf-empty-btn {
   margin-top: 16rpx;
-  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  background: var(--green);
   border-radius: 999rpx;
   padding: 24rpx 64rpx;
-  box-shadow: 0 8rpx 28rpx rgba(30, 77, 52, 0.25);
 }
 
-.prf-empty-btn-text { color: #F0ECE0; font-size: 32rpx; font-weight: 600; }
+.prf-empty-btn-text { color: #FFFFFF; font-size: 32rpx; font-weight: 600; }
 
 // ── Metric log modal ───────────────────────────────────────────────────────
 .prf-modal-overlay {
@@ -618,16 +615,15 @@
   flex: 1;
   padding: 26rpx 0;
   border-radius: 999rpx;
-  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  background: var(--green);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4rpx 20rpx rgba(30, 77, 52, 0.3);
 }
 
 .prf-modal-btn-text {
   font-size: 30rpx;
   font-weight: 600;
   color: var(--text2);
-  &--save { color: #F0ECE0; }
+  &--save { color: #FFFFFF; }
 }

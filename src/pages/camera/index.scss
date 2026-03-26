@@ -194,13 +194,13 @@
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4A8B68, #1E4D34);
+  background: var(--green);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6rpx 24rpx rgba(30, 77, 52, 0.5);
+  box-shadow: 0 6rpx 24rpx rgba(30, 77, 52, 0.45);
 
-  &--error { background: linear-gradient(135deg, #C05040, #8A2828); }
+  &--error { background: var(--red); }
 }
 
 .cam-capture-icon { font-size: 52rpx; line-height: 1; }
@@ -217,7 +217,7 @@
 }
 
 .cam-result-sheet {
-  background: #FEFBF4;
+  background: var(--card);
   border-radius: 48rpx 48rpx 0 0;
   padding: 0 36rpx 60rpx;
   max-height: 88vh;
@@ -234,7 +234,7 @@
   width: 64rpx;
   height: 6rpx;
   border-radius: 3rpx;
-  background: #D4CEC0;
+  background: var(--border);
   margin: 20rpx auto 40rpx;
 }
 
@@ -303,19 +303,19 @@
   flex: 1;
   padding: 12rpx 0;
   border-radius: 40rpx;
-  border: 1rpx solid #D1D5DB;
-  background: #F9FAFB;
+  border: 1rpx solid var(--border);
+  background: var(--bg);
   text-align: center;
   &--active {
-    border-color: #10B981;
-    background: #ECFDF5;
+    border-color: var(--green);
+    background: var(--green-l);
   }
 }
 .cam-meal-type-text {
   font-size: 22rpx;
-  color: #374151;
+  color: var(--text2);
   .cam-meal-type-btn--active & {
-    color: #065F46;
+    color: var(--green-d);
     font-weight: 600;
   }
 }
@@ -353,24 +353,24 @@
 
 // ── Advice box ────────────────────────────────────────────
 .cam-advice-box {
-  background: linear-gradient(135deg, #E8F4ED, #DAEEE2);
+  background: var(--green-l);
   border-radius: 24rpx;
   padding: 28rpx;
   margin-bottom: 28rpx;
-  border: 1rpx solid #BAD8C4;
+  border: 1rpx solid rgba(61, 122, 90, 0.2);
 }
 
 .cam-advice-title {
   font-size: 24rpx;
   font-weight: 600;
-  color: #1A3A24;
+  color: var(--text);
   display: block;
   margin-bottom: 12rpx;
   text-transform: uppercase;
   letter-spacing: 1rpx;
 }
 
-.cam-advice-body { font-size: 26rpx; color: #2A5038; line-height: 1.75; }
+.cam-advice-body { font-size: 26rpx; color: var(--text2); line-height: 1.75; }
 
 // ── Traffic lights ────────────────────────────────────────
 .cam-lights-list { margin-bottom: 36rpx; }
@@ -420,13 +420,12 @@
 
 .cam-record-btn {
   flex: 2;
-  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  background: var(--green);
   border-radius: 56rpx;
   padding: 36rpx 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8rpx 28rpx rgba(30, 77, 52, 0.3);
 }
 
-.cam-record-text { color: #F0ECE0; font-size: 30rpx; font-weight: 700; letter-spacing: 2rpx; }
+.cam-record-text { color: #FFFFFF; font-size: 30rpx; font-weight: 700; letter-spacing: 2rpx; }
