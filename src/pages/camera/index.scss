@@ -293,6 +293,33 @@
 
 .cam-kcal-unit { font-size: 19rpx; color: #A05828; margin-top: 2rpx; }
 
+// ── Meal type selector ────────────────────────────────────
+.cam-meal-type-row {
+  display: flex;
+  gap: 12rpx;
+  padding: 0 32rpx 24rpx;
+}
+.cam-meal-type-btn {
+  flex: 1;
+  padding: 12rpx 0;
+  border-radius: 40rpx;
+  border: 1rpx solid #D1D5DB;
+  background: #F9FAFB;
+  text-align: center;
+  &--active {
+    border-color: #10B981;
+    background: #ECFDF5;
+  }
+}
+.cam-meal-type-text {
+  font-size: 22rpx;
+  color: #374151;
+  .cam-meal-type-btn--active & {
+    color: #065F46;
+    font-weight: 600;
+  }
+}
+
 // ── Nutrition grid ────────────────────────────────────────
 .cam-nutrition-grid {
   display: flex;

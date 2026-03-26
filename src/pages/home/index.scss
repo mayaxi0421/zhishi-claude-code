@@ -251,6 +251,50 @@
   box-shadow: 0 4rpx 28rpx rgba(30, 77, 52, 0.12);
 }
 
+// ── Today's plan recommendation card ────────────────────
+.plan-today-card {
+  background: var(--card);
+  border-radius: 28rpx;
+  margin: 12rpx 32rpx 0;
+  padding: 28rpx;
+  border: 1rpx solid rgba(16, 185, 129, 0.2);
+}
+.plan-today-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4rpx;
+}
+.plan-today-plan-name {
+  display: block;
+  font-size: 22rpx;
+  color: #10B981;
+  margin-bottom: 20rpx;
+}
+.plan-today-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  padding: 12rpx 0;
+  border-top: 1rpx solid var(--border);
+  &:first-of-type { border-top: none; }
+}
+.plan-today-emoji { font-size: 34rpx; flex-shrink: 0; margin-top: 2rpx; }
+.plan-today-info { flex: 1; }
+.plan-today-lbl {
+  display: block;
+  font-size: 22rpx;
+  color: var(--muted);
+  margin-bottom: 4rpx;
+}
+.plan-today-meal {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text);
+  line-height: 1.4;
+}
+
 // ── Meal slots ──────────────────────────────────────────
 .meal-slot {
   background: var(--card);

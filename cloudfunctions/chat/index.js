@@ -35,6 +35,8 @@ exports.main = async (event) => {
   const apiKey = process.env.VOLC_API_KEY
   const model  = process.env.VOLC_CHAT_EP || 'doubao-pro-32k'
 
+  if (!apiKey) return { success: false, error: 'credentials_missing' }
+
   const conditions = ((profile && profile.conditions) || []).join('、') || '无'
   const allergies  = ((profile && profile.allergies)  || []).join('、') || '无'
   const goal       = (profile && profile.goal) || '均衡健康'

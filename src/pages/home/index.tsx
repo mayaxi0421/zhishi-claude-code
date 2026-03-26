@@ -23,6 +23,24 @@ const MEAL_NAMES: Record<string, string> = {
   snack:     '加餐',
 }
 
+const PLAN_MEALS: Record<string, { breakfast: string; lunch: string; dinner: string }> = {
+  '减脂增肌方案': {
+    breakfast: '燕麦粥 + 水煮蛋 2个 + 低脂牛奶',
+    lunch:     '鸡胸肉 200g + 西兰花 + 糙米饭 100g',
+    dinner:    '清蒸鱼 150g + 绿叶蔬菜 + 少量主食',
+  },
+  '地中海饮食': {
+    breakfast: '全麦面包 + 牛油果 + 番茄片',
+    lunch:     '金枪鱼沙拉 + 橄榄油 + 全麦意面',
+    dinner:    '烤三文鱼 + 彩椒炒蔬菜 + 藜麦',
+  },
+  '低GI饮食': {
+    breakfast: '燕麦粥 + 蓝莓 + 原味坚果一把',
+    lunch:     '糙米饭 + 豆腐炒菜 + 绿叶菜',
+    dinner:    '蒸红薯 + 水煮蛋 + 蔬菜汤',
+  },
+}
+
 const PLANS = [
   { ico:'💪', title:'减脂增肌方案', desc:'高蛋白低碳水·4周', tag:'推荐', tc:'#10B981', tb:'#ECFDF5',
     detail:'每日蛋白质 ≥ 120g，碳水 < 150g，优先鸡胸肉、鸡蛋、绿叶菜。适合想在 4 周内明显减脂的用户。' },
@@ -175,6 +193,27 @@ export default function Home() {
               )
             })}
           </ScrollView>
+
+          {/* Today's recommended meals for active plan */}
+          {activePlan && PLAN_MEALS[activePlan] && (
+            <View className="plan-today-card">
+              <Text className="plan-today-title">🍱 今日推荐餐单</Text>
+              <Text className="plan-today-plan-name">{activePlan}</Text>
+              {([
+                { emoji: '🥣', label: '早餐', meal: PLAN_MEALS[activePlan].breakfast },
+                { emoji: '🥗', label: '午餐', meal: PLAN_MEALS[activePlan].lunch },
+                { emoji: '🍜', label: '晚餐', meal: PLAN_MEALS[activePlan].dinner },
+              ]).map(r => (
+                <View key={r.label} className="plan-today-row">
+                  <Text className="plan-today-emoji">{r.emoji}</Text>
+                  <View className="plan-today-info">
+                    <Text className="plan-today-lbl">{r.label}</Text>
+                    <Text className="plan-today-meal">{r.meal}</Text>
+                  </View>
+                </View>
+              ))}
+            </View>
+          )}
         </>
       )}
 

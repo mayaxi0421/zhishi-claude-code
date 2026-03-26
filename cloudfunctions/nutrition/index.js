@@ -16,6 +16,10 @@ exports.main = async (event) => {
   const appId = process.env.EDAMAM_APP_ID
   const appKey = process.env.EDAMAM_APP_KEY
 
+  if (!appId || !appKey) {
+    return { success: false, error: 'credentials_missing' }
+  }
+
   const data = await fetchNutrition(query, appId, appKey)
 
   return {

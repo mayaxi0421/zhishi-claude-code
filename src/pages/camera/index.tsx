@@ -26,6 +26,12 @@ const LEVEL_COLORS: Record<string, string> = {
 const LEVEL_EMOJIS: Record<string, string> = {
   green: '🟢', yellow: '🟡', amber: '🟡', red: '🔴',
 }
+const MEAL_TYPE_LABELS: Record<string, string> = {
+  breakfast: '🥣 早餐',
+  lunch:     '🥗 午餐',
+  dinner:    '🍜 晚餐',
+  snack:     '🍎 加餐',
+}
 
 function getMealType(): 'breakfast' | 'lunch' | 'dinner' | 'snack' {
   const h = new Date().getHours()
@@ -45,6 +51,7 @@ export default function CameraPage() {
   const [currentFood, setCurrentFood] = useState<FoodResult | null>(null)
   const [previewPath, setPreviewPath] = useState<string>('')
   const [camError, setCamError] = useState(false)
+  const [selectedMealType, setSelectedMealType] = useState<'breakfast'|'lunch'|'dinner'|'snack'>(getMealType())
   const runIdRef = useRef(0)
 
   function reset() {
@@ -52,6 +59,7 @@ export default function CameraPage() {
     setPageState('idle')
     setCurrentFood(null)
     setPreviewPath('')
+    setSelectedMealType(getMealType())
   }
 
   async function processPhoto(filePath: string) {
@@ -121,7 +129,7 @@ export default function CameraPage() {
     if (!currentFood) return
     addMealRecord({
       id: Date.now().toString(),
-      type: getMealType(),
+      type: selectedMealType,
       name: currentFood.name,
       calories: currentFood.calories,
       protein: currentFood.protein,
@@ -235,6 +243,19 @@ export default function CameraPage() {
                 <Text className="cam-kcal-num">{currentFood.calories}</Text>
                 <Text className="cam-kcal-unit">kcal</Text>
               </View>
+            </View>
+
+            {/* Meal type selector */}
+            <View className="cam-meal-type-row">
+              {(['breakfast','lunch','dinner','snack'] as const).map(t => (
+                <View
+                  key={t}
+                  className={`cam-meal-type-btn${selectedMealType === t ? ' cam-meal-type-btn--active' : ''}`}
+                  onClick={() => setSelectedMealType(t)}
+                >
+                  <Text className="cam-meal-type-text">{MEAL_TYPE_LABELS[t]}</Text>
+                </View>
+              ))}
             </View>
 
             <View className="cam-nutrition-grid">

@@ -91,6 +91,27 @@ const CHRONIC_SUPPS: Supplement[] = [
   { name: '辅酶Q10 100mg', time: '早餐后', done: false },
 ]
 
+// ── Streak calculation ────────────────────────────────────────────────────
+
+function calcStreak(): number {
+  let streak = 0
+  const base = new Date()
+  base.setHours(0, 0, 0, 0)
+  while (streak <= 365) {
+    const d = new Date(base)
+    d.setDate(base.getDate() - streak)
+    const key = `todayLog_${d.toISOString().split('T')[0]}`
+    try {
+      const raw = Taro.getStorageSync(key)
+      if (!raw) break
+      const log = JSON.parse(raw)
+      if (!log.meals || log.meals.length === 0) break
+    } catch { break }
+    streak++
+  }
+  return streak
+}
+
 // ── Metric storage helpers ────────────────────────────────────────────────
 
 function todayStr() { return new Date().toISOString().split('T')[0] }
@@ -201,12 +222,16 @@ export default function Profile() {
   const [supps,         setSupps]         = useState<Supplement[]>([])
   const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({})
   const [todayMetrics,  setTodayMetrics]  = useState<Record<string, Record<string, string>>>({})
+  const [streakDays,    setStreakDays]    = useState(0)
   const [logModal, setLogModal] = useState<{
     condition: string;
     values: Record<string, string>;
   } | null>(null)
 
-  useEffect(() => { loadFromStorage() }, [])
+  useEffect(() => {
+    loadFromStorage()
+    setStreakDays(calcStreak())
+  }, [])
 
   const hasProfile  = !!(profile?.height && profile?.weight)
   const conditions  = profile?.conditions ?? []
@@ -303,6 +328,11 @@ export default function Profile() {
           <Text className="prf-avatar-emoji">{isHealthy ? '😊' : '💪'}</Text>
         </View>
         <Text className="prf-name">{profile?.name ?? '健康用户'}</Text>
+        {streakDays > 0 && (
+          <View className="prf-streak-badge">
+            <Text className="prf-streak-text">🔥 已坚持 {streakDays} 天</Text>
+          </View>
+        )}
         {!isHealthy && (
           <View className="prf-hero-tags">
             {activeConditions.map(c => (
