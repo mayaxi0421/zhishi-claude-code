@@ -1,0 +1,319 @@
+// ═══════════════════════════════════════════════
+// Report Page — Weekly Nutrition Intelligence
+// Concept: Editorial data journalism
+// Score number in Songti SC, charts minimal,
+// AI commentary framed as a featured quote card.
+// ═══════════════════════════════════════════════
+
+.rpt-scroll {
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+// ── Header ───────────────────────────────────────────────
+.rpt-header {
+  background: var(--card);
+  padding: 88rpx 32rpx 32rpx;
+  box-shadow: 0 1rpx 0 var(--border);
+}
+
+.rpt-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+}
+
+.rpt-header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.rpt-title {
+  font-family: var(--font-serif);
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 2rpx;
+}
+
+.rpt-week-label { font-size: 22rpx; color: var(--text3); letter-spacing: 0.5rpx; }
+
+.rpt-nav-btn {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1rpx solid var(--border);
+}
+
+.rpt-nav-arrow { font-size: 36rpx; color: var(--text2); }
+
+// ── Day dots row ─────────────────────────────────────────
+.rpt-days-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4rpx;
+}
+
+.rpt-day-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  flex: 1;
+}
+
+.rpt-day-label { font-size: 21rpx; color: var(--text3); font-weight: 500; }
+
+.rpt-day-dot {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--hit       { background: var(--green-l); border: 1rpx solid #A8D0B8; }
+  &--today-hit { background: var(--green-d); border: none; box-shadow: 0 0 0 5rpx rgba(61, 122, 90, 0.2); }
+  &--over      { background: #F8EAD8; border: 1rpx solid #D8B890; }
+  &--empty     { background: var(--bg); border: 1rpx solid var(--border); }
+  &--today-miss{ background: var(--bg); border: 3rpx solid var(--green); }
+}
+
+.rpt-day-icon {
+  font-size: 22rpx;
+  color: var(--green);
+
+  &--warn  { color: var(--amber); font-weight: 700; font-size: 26rpx; }
+  &--empty { color: var(--text3); font-size: 26rpx; }
+}
+
+// ── Score card — flagship element ────────────────────────
+.rpt-score-card {
+  display: flex;
+  align-items: center;
+  gap: 32rpx;
+  background: linear-gradient(135deg, #1E4D34, #3D7A5A);
+  border-radius: 40rpx;
+  margin: 28rpx 32rpx 0;
+  padding: 44rpx 40rpx;
+  box-shadow: 0 8rpx 40rpx rgba(30, 77, 52, 0.3);
+}
+
+.rpt-score-circle {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 8rpx rgba(255, 255, 255, 0.05);
+}
+
+.rpt-score-num {
+  font-family: var(--font-mono);
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #F0ECE0;
+  line-height: 1;
+}
+
+.rpt-score-denom { font-size: 21rpx; color: rgba(240, 236, 224, 0.6); margin-top: 2rpx; }
+
+.rpt-score-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.rpt-score-title {
+  font-family: var(--font-serif);
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #F0ECE0;
+  margin-bottom: 2rpx;
+  letter-spacing: 0.5rpx;
+}
+
+.rpt-score-line { font-size: 24rpx; color: rgba(240, 236, 224, 0.78); line-height: 1.6; }
+
+// ── Section cards ─────────────────────────────────────────
+.rpt-section-card {
+  background: var(--card);
+  border-radius: 36rpx;
+  margin: 24rpx 32rpx 0;
+  padding: 36rpx;
+  box-shadow: var(--shadow);
+}
+
+.rpt-section-title {
+  font-size: 20rpx;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 28rpx;
+}
+
+// ── Bar chart ─────────────────────────────────────────────
+.rpt-target-hint {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.rpt-target-line  { flex: 1; height: 0; border-top: 2rpx dashed rgba(184, 64, 64, 0.4); }
+.rpt-target-label { font-size: 21rpx; color: var(--red); font-weight: 500; flex-shrink: 0; opacity: 0.7; }
+
+.rpt-bars-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 6rpx;
+  height: 260rpx;
+}
+
+.rpt-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.rpt-bar-kcal   { font-family: var(--font-mono); font-size: 17rpx; color: var(--text3); text-align: center; line-height: 28rpx; height: 28rpx; }
+.rpt-bar-spacer { flex: 1; }
+.rpt-bar-fill   { width: 100%; border-radius: 6rpx 6rpx 0 0; }
+
+.rpt-bar-label {
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21rpx;
+  color: var(--text3);
+  width: 100%;
+
+  &--today { color: var(--green); font-weight: 700; }
+}
+
+// ── Nutrient bars ─────────────────────────────────────────
+.rpt-nutrients {
+  display: flex;
+  flex-direction: column;
+  gap: 28rpx;
+}
+
+.rpt-nutrient-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.rpt-nutrient-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rpt-nutrient-name { font-size: 26rpx; color: var(--text); font-weight: 500; }
+
+.rpt-nutrient-tag-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.rpt-tag {
+  font-size: 19rpx;
+  font-weight: 600;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+
+  &--over { color: #884A18; background: #F5E4CC; }
+  &--low  { color: var(--red); background: #F8DADA; }
+}
+
+.rpt-nutrient-pct {
+  font-family: var(--font-mono);
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.rpt-nutrient-track {
+  height: 14rpx;
+  background: var(--bg);
+  border-radius: 7rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.rpt-nutrient-fill      { height: 100%; border-radius: 7rpx; transition: width 0.6s ease; }
+.rpt-nutrient-over-mark { position: absolute; right: 0; top: 0; bottom: 0; width: 3rpx; background: rgba(0,0,0,0.12); }
+
+// ── AI commentary card — featured quote ───────────────────
+.rpt-ai-card {
+  background: var(--card);
+  border-left: 4rpx solid var(--green);
+  border-radius: 0 36rpx 36rpx 0;
+  margin: 24rpx 32rpx 0;
+  margin-left: 36rpx;
+  padding: 36rpx 36rpx 36rpx 32rpx;
+  box-shadow: var(--shadow);
+}
+
+.rpt-ai-header {
+  font-size: 20rpx;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 18rpx;
+}
+
+.rpt-ai-body {
+  font-size: 27rpx;
+  color: var(--text);
+  line-height: 1.8;
+  font-style: italic;
+}
+
+.rpt-bottom-space { height: 48rpx; }
+
+// ── Empty state ───────────────────────────────────────────
+.rpt-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 60rpx;
+  gap: 24rpx;
+}
+
+.rpt-empty-emoji  { font-size: 96rpx; }
+.rpt-empty-title  { font-family: var(--font-serif); font-size: 40rpx; font-weight: 700; color: var(--text); }
+.rpt-empty-desc   { font-size: 28rpx; color: var(--text3); text-align: center; line-height: 1.6; }
+
+.rpt-empty-btn {
+  margin-top: 16rpx;
+  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  border-radius: 999rpx;
+  padding: 24rpx 64rpx;
+  box-shadow: 0 8rpx 28rpx rgba(30, 77, 52, 0.25);
+}
+
+.rpt-empty-btn-text { color: #F0ECE0; font-size: 32rpx; font-weight: 600; }

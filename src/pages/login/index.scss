@@ -1,0 +1,159 @@
+// ═══════════════════════════════════════════════
+// Login Page — 知食 First Impression
+// Concept: Deep forest immersion → warm reveal
+// The app name "知食" rendered in large Songti SC
+// anchors the brand with cultural gravitas.
+// ═══════════════════════════════════════════════
+
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+// Deep forest background — layered depth
+.login-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 25% 35%,
+      rgba(30, 77, 52, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 78% 72%,
+      rgba(61, 122, 90, 0.35) 0%, transparent 50%),
+    linear-gradient(168deg,
+      #050A05 0%,
+      #0C180C 30%,
+      #152514 60%,
+      #1E4D34 88%,
+      #2E6B4A 100%);
+  z-index: 0;
+}
+
+// Hero zone — brandmark
+.login-hero {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 200rpx;
+  padding-bottom: 60rpx;
+}
+
+// Thin botanical ring around emoji
+.login-logo-wrap {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  border: 1rpx solid rgba(119, 185, 148, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 64rpx;
+  box-shadow:
+    0 0 0 12rpx rgba(61, 122, 90, 0.08),
+    0 0 60rpx rgba(30, 77, 52, 0.4);
+}
+
+.login-logo-emoji {
+  font-size: 52rpx;
+  line-height: 1;
+}
+
+// Brand name — Songti SC, generous tracking
+.login-app-name {
+  font-family: var(--font-serif);
+  font-size: 112rpx;
+  font-weight: 700;
+  color: #F0ECE0;
+  letter-spacing: 20rpx;
+  margin-bottom: 28rpx;
+  text-shadow:
+    0 2rpx 0 rgba(0, 0, 0, 0.4),
+    0 6rpx 40rpx rgba(61, 122, 90, 0.35);
+}
+
+// Tagline — very light, spaced
+.login-tagline {
+  font-family: var(--font-sans);
+  font-size: 24rpx;
+  font-weight: 300;
+  color: rgba(200, 225, 210, 0.55);
+  letter-spacing: 5rpx;
+  text-align: center;
+  padding: 0 80rpx;
+  line-height: 2.2;
+}
+
+// Bottom action area
+.login-bottom {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0 52rpx 96rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// WeChat login button — warm cream, forest text
+.login-btn {
+  width: 100%;
+  height: 112rpx;
+  border-radius: 56rpx;
+  background: #F0ECE0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18rpx;
+  box-shadow:
+    0 12rpx 48rpx rgba(0, 0, 0, 0.38),
+    0 2rpx 8rpx rgba(0, 0, 0, 0.2);
+  border: none;
+  margin-bottom: 44rpx;
+  animation: loginBtnAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s both;
+
+  &::after { border: none; }
+  &[disabled] { opacity: 0.6; }
+}
+
+@keyframes loginBtnAppear {
+  from { opacity: 0; transform: translateY(24rpx); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-btn-icon {
+  font-size: 40rpx;
+  line-height: 1;
+}
+
+.login-btn-text {
+  font-family: var(--font-sans);
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #162A1A;
+  letter-spacing: 3rpx;
+}
+
+// Privacy row — barely visible, humble
+.login-privacy {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.login-privacy-text {
+  font-size: 22rpx;
+  color: rgba(200, 225, 210, 0.38);
+  letter-spacing: 0.5rpx;
+}
+
+.login-privacy-link {
+  font-size: 22rpx;
+  color: rgba(119, 185, 148, 0.65);
+}

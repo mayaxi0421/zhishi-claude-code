@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+cloudfunctions/*/node_modules/
+
+# Build output
+dist/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+config/env.js
+
+# IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Taro / SWC cache
+.taro-cache/
+.swc/
+
+# WeChat DevTools
+*.wxid
+miniprogram_npm/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Skills agent cache
+.agents/
+
+# Installed skills (tool configs, not project code)
+# skills-lock.json is kept to record which skills are used
+.claude/skills/

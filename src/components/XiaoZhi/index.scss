@@ -1,0 +1,166 @@
+.xz-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  flex-shrink: 0;
+}
+
+// ── 嫩芽 ──────────────────────────────────────
+.xz-sprout {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.xz-sprout-text {
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+// ── 脸 ───────────────────────────────────────
+.xz-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.xz-shine {
+  position: absolute;
+  top: 14%;
+  left: 20%;
+  width: 28%;
+  height: 18%;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+
+.xz-eyes {
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4rpx;
+  z-index: 1;
+  text-shadow: 0 1rpx 2rpx rgba(0,0,0,0.15);
+}
+
+.xz-cheeks {
+  position: absolute;
+  bottom: 28%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12%;
+}
+
+.xz-cheek {
+  width: 18%;
+  height: 10%;
+  background: rgba(255, 200, 180, 0.5);
+  border-radius: 50%;
+  min-width: 10rpx;
+  min-height: 6rpx;
+}
+
+.xz-mouth {
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 1;
+  text-shadow: 0 1rpx 2rpx rgba(0,0,0,0.15);
+}
+
+// ── excellent 闪光 ─────────────────────────────
+.xz-sparkles {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+
+.xz-sp {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.xz-sp1 { width: 12rpx; height: 12rpx; top: 8rpx; right: 8rpx; animation: xz-twinkle 1s 0s infinite; }
+.xz-sp2 { width: 8rpx;  height: 8rpx;  top: 20rpx; left: 4rpx; animation: xz-twinkle 1s 0.3s infinite; }
+.xz-sp3 { width: 10rpx; height: 10rpx; bottom: 12rpx; right: 4rpx; animation: xz-twinkle 1s 0.6s infinite; }
+
+// ── thinking 气泡点 ────────────────────────────
+.xz-think-dots {
+  position: absolute;
+  top: 16rpx;
+  right: -8rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.xz-td {
+  border-radius: 50%;
+}
+
+.xz-td1 { width: 12rpx; height: 12rpx; animation: xz-dot 1.2s 0s infinite; }
+.xz-td2 { width: 9rpx;  height: 9rpx;  animation: xz-dot 1.2s 0.3s infinite; }
+.xz-td3 { width: 6rpx;  height: 6rpx;  animation: xz-dot 1.2s 0.6s infinite; }
+
+// ── 情绪动画 ───────────────────────────────────
+.xz-idle      { animation: xz-breathe 3s ease-in-out infinite; }
+.xz-happy     { animation: xz-bounce 0.7s ease-in-out infinite; }
+.xz-excellent { animation: xz-celebrate 0.8s ease-in-out infinite; }
+.xz-warning   { animation: xz-shake 0.5s ease-in-out infinite; }
+.xz-alert     { animation: xz-pulse 0.6s ease-in-out infinite; }
+.xz-thinking  { animation: xz-think 2.5s ease-in-out infinite; }
+.xz-concerned { animation: xz-nod 2s ease-in-out infinite; }
+
+// ── Keyframes ─────────────────────────────────
+@keyframes xz-breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.06); }
+}
+@keyframes xz-bounce {
+  0%, 100% { transform: translateY(0); }
+  40%       { transform: translateY(-14rpx); }
+  65%       { transform: translateY(-8rpx); }
+}
+@keyframes xz-celebrate {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  30%       { transform: scale(1.1) rotate(-6deg); }
+  70%       { transform: scale(1.1) rotate(6deg); }
+}
+@keyframes xz-shake {
+  0%, 100% { transform: rotate(0deg); }
+  20%       { transform: rotate(-10deg); }
+  50%       { transform: rotate(10deg); }
+  80%       { transform: rotate(-6deg); }
+}
+@keyframes xz-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.12); }
+}
+@keyframes xz-think {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  40%       { transform: translateY(-6rpx) rotate(-4deg); }
+  70%       { transform: translateY(-3rpx) rotate(4deg); }
+}
+@keyframes xz-nod {
+  0%, 100% { transform: rotate(0deg); }
+  40%       { transform: rotate(-5deg); }
+  70%       { transform: rotate(5deg); }
+}
+@keyframes xz-twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.2; transform: scale(0.5); }
+}
+@keyframes xz-dot {
+  0%, 100% { opacity: 0.3; transform: scale(0.7); }
+  50%       { opacity: 1; transform: scale(1); }
+}

@@ -1,0 +1,274 @@
+// ═══════════════════════════════════════════════
+// Assistant Page — Premium AI Concierge
+// Concept: Refined health advisor, not chatbot
+// Warm linen backgrounds, elegant bubble form,
+// XiaoZhi framed like a wellness brand mascot.
+// ═══════════════════════════════════════════════
+
+.ast-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+// ── Header ─────────────────────────────────────────────────
+.ast-header {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 96rpx 36rpx 28rpx;
+  background: linear-gradient(170deg, #D8EEE2 0%, #EDE8D8 100%);
+  border-bottom: 1rpx solid rgba(61, 122, 90, 0.15);
+  flex-shrink: 0;
+}
+
+.ast-header-char { flex-shrink: 0; }
+
+.ast-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+  position: relative;
+}
+
+.ast-title {
+  font-family: var(--font-serif);
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  letter-spacing: 1rpx;
+}
+
+.ast-subtitle {
+  font-size: 22rpx;
+  color: var(--text3);
+  letter-spacing: 0.5rpx;
+}
+
+// Status dot — mood indicator
+.ast-status-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  position: absolute;
+  right: -8rpx;
+  top: 4rpx;
+  transition: background-color 0.4s ease;
+
+  &--idle      { background: var(--green); }
+  &--happy     { background: #5AAA70; }
+  &--excellent { background: var(--amber); }
+  &--warning   { background: #C88040; }
+  &--alert     { background: var(--red); }
+  &--thinking  { background: #7878C0; animation: ast-dot-blink 0.8s ease-in-out infinite; }
+  &--concerned { background: #9070B0; }
+}
+
+@keyframes ast-dot-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+// ── Quick chips ────────────────────────────────────────────
+.ast-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+  padding: 22rpx 36rpx;
+  background: var(--card);
+  border-bottom: 1rpx solid var(--border);
+  flex-shrink: 0;
+}
+
+.ast-chip {
+  border: 1rpx solid rgba(61, 122, 90, 0.35);
+  border-radius: 999rpx;
+  padding: 12rpx 22rpx;
+  background: var(--green-l);
+}
+
+.ast-chip-text {
+  font-size: 23rpx;
+  color: #1A3A22;
+  font-weight: 500;
+  letter-spacing: 0.5rpx;
+}
+
+// ── Messages ───────────────────────────────────────────────
+.ast-messages {
+  flex: 1;
+  overflow: hidden;
+}
+
+.ast-messages-inner {
+  padding: 32rpx 28rpx 16rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 28rpx;
+}
+
+// Message row
+.ast-msg-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16rpx;
+
+  &--user { flex-direction: row-reverse; }
+  &--bot  { flex-direction: row; }
+}
+
+.ast-bot-avatar {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.ast-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 72%;
+
+  .ast-msg-row--user & { align-items: flex-end; }
+  .ast-msg-row--bot  & { align-items: flex-start; }
+}
+
+.ast-bubble {
+  padding: 22rpx 28rpx;
+  border-radius: 28rpx;
+
+  &--user {
+    background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+    border-bottom-right-radius: 6rpx;
+    box-shadow: 0 4rpx 16rpx rgba(30, 77, 52, 0.25);
+  }
+
+  &--bot {
+    background: var(--card);
+    border-bottom-left-radius: 6rpx;
+    border: 1rpx solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  &--typing {
+    padding: 22rpx 30rpx;
+    background: var(--card);
+    border: 1rpx solid var(--border);
+    box-shadow: var(--shadow);
+  }
+}
+
+.ast-bubble-text {
+  font-size: 27rpx;
+  line-height: 1.8;
+  white-space: pre-wrap;
+
+  &--user { color: #F0ECE0; }
+  &--bot  { color: var(--text); }
+}
+
+.ast-msg-time {
+  font-family: var(--font-mono);
+  font-size: 19rpx;
+  color: var(--text3);
+  margin-top: 8rpx;
+  padding: 0 4rpx;
+}
+
+// Typing indicator dots
+.ast-typing-dots {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  height: 32rpx;
+}
+
+.ast-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: var(--text3);
+  animation: dotBounce 1.2s ease-in-out infinite;
+
+  &--1 { animation-delay: 0s; }
+  &--2 { animation-delay: 0.2s; }
+  &--3 { animation-delay: 0.4s; }
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.35; }
+  40%            { transform: translateY(-8rpx); opacity: 1; }
+}
+
+// ── Input bar ──────────────────────────────────────────────
+.ast-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  padding: 20rpx 32rpx 48rpx;
+  background: var(--card);
+  border-top: 1rpx solid var(--border);
+  flex-shrink: 0;
+}
+
+.ast-mic-btn {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1rpx solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ast-mic-icon { font-size: 34rpx; }
+
+.ast-input-wrap {
+  flex: 1;
+  background: var(--bg);
+  border: 1rpx solid var(--border);
+  border-radius: 999rpx;
+  padding: 0 28rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+}
+
+.ast-input {
+  width: 100%;
+  height: 72rpx;
+  font-size: 27rpx;
+  color: var(--text);
+  background: transparent;
+}
+
+.ast-input-placeholder {
+  color: var(--text3);
+  font-size: 27rpx;
+}
+
+.ast-send-btn {
+  background: var(--border);
+  border-radius: 999rpx;
+  padding: 18rpx 28rpx;
+  flex-shrink: 0;
+  transition: background 0.2s;
+
+  &--active {
+    background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+    box-shadow: 0 4rpx 16rpx rgba(30, 77, 52, 0.28);
+  }
+}
+
+.ast-send-text {
+  font-size: 27rpx;
+  font-weight: 600;
+  color: #fff;
+
+  .ast-send-btn:not(.ast-send-btn--active) & { color: var(--text2); }
+}
+
+@import '../../styles/voice-overlay';

@@ -1,0 +1,341 @@
+// ═══════════════════════════════════════════════════════
+// Home Page — Daily Nutrition Dashboard
+// Concept: The calorie ring as a luxury "watch dial"
+// Oversized monospace numerals for calorie count.
+// Nutrition data displayed with precision-label clarity.
+// ═══════════════════════════════════════════════════════
+
+.home-scroll {
+  height: 100vh;
+  background: var(--bg);
+}
+
+// ── Greeting header ──────────────────────────────────────
+.greet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 40rpx 32rpx;
+
+  .greet-title {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 40rpx;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 1rpx;
+  }
+
+  .greet-sub {
+    display: block;
+    font-size: 22rpx;
+    font-weight: 400;
+    color: var(--text3);
+    margin-top: 6rpx;
+    letter-spacing: 1rpx;
+  }
+
+  .avatar {
+    font-size: 38rpx;
+    opacity: 0.85;
+  }
+}
+
+// ── Calorie ring card — the "watch dial" ─────────────────
+.ring-card {
+  background: var(--card);
+  border-radius: 40rpx;
+  margin: 0 32rpx 24rpx;
+  padding: 40rpx 36rpx;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 40rpx;
+}
+
+.ring-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ring-css {
+  width: 216rpx;
+  height: 216rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 24rpx rgba(8, 14, 8, 0.10);
+}
+
+// The "watch face" center
+.ring-inner {
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 50%;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .ring-num {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 52rpx;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -1rpx;
+  }
+
+  .ring-label {
+    display: block;
+    font-size: 17rpx;
+    color: var(--text3);
+    margin-top: 6rpx;
+    letter-spacing: 2rpx;
+    text-transform: uppercase;
+  }
+
+  .ring-total {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 18rpx;
+    color: var(--text3);
+    margin-top: 2rpx;
+  }
+}
+
+// ── Macros: precision nutrition label ───────────────────
+.macro-col {
+  flex: 1;
+}
+
+.macro-title {
+  display: block;
+  font-size: 20rpx;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  margin-bottom: 20rpx;
+}
+
+.mbar {
+  margin-bottom: 18rpx;
+
+  &:last-child { margin-bottom: 0; }
+}
+
+.mbar-lbl {
+  display: flex;
+  justify-content: space-between;
+  font-size: 21rpx;
+  color: var(--text2);
+  margin-bottom: 8rpx;
+  font-weight: 500;
+}
+
+.mbar-track {
+  height: 8rpx;
+  background: var(--border);
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.mbar-fill {
+  height: 100%;
+  border-radius: 4rpx;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// ── Tips ─────────────────────────────────────────────────
+.tip-row {
+  border-radius: 28rpx;
+  padding: 24rpx 28rpx;
+  margin: 0 32rpx 16rpx;
+  display: flex;
+  gap: 18rpx;
+  align-items: flex-start;
+  border-width: 1rpx;
+  border-style: solid;
+
+  &.diet {
+    background: linear-gradient(135deg, #E8F4ED, #D8EEE0);
+    border-color: #B8D8C4;
+  }
+
+  &.supp {
+    background: linear-gradient(135deg, #EAF0FF, #DCE8F8);
+    border-color: #B0C8E8;
+  }
+
+  &.danger {
+    background: linear-gradient(135deg, #FDF0EC, #FAE2D8);
+    border-color: #E8B8A0;
+  }
+
+  .tip-ico {
+    font-size: 32rpx;
+    flex-shrink: 0;
+    margin-top: 2rpx;
+    opacity: 0.9;
+  }
+
+  .tip-txt {
+    font-size: 25rpx;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  .bold { font-weight: 600; }
+}
+
+// ── Section title — small caps label ─────────────────────
+.sec-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8rpx 40rpx 18rpx;
+  font-size: 20rpx;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+
+  .sec-more {
+    font-size: 22rpx;
+    color: var(--green);
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+}
+
+// ── Plan cards ───────────────────────────────────────────
+.plan-scroll {
+  padding: 0 32rpx 4rpx;
+  white-space: nowrap;
+}
+
+.plan-card {
+  display: inline-block;
+  width: 280rpx;
+  background: var(--card);
+  border-radius: 32rpx;
+  padding: 28rpx 24rpx;
+  margin-right: 18rpx;
+  box-shadow: var(--shadow);
+  vertical-align: top;
+  border: 1rpx solid transparent;
+
+  .plan-ico   { display: block; font-size: 48rpx; margin-bottom: 16rpx; }
+  .plan-title { display: block; font-size: 27rpx; font-weight: 700; color: var(--text); }
+  .plan-desc  { display: block; font-size: 21rpx; color: var(--text3); margin-top: 6rpx; line-height: 1.5; }
+
+  .plan-tag {
+    display: inline-block;
+    margin-top: 14rpx;
+    padding: 5rpx 16rpx;
+    border-radius: 20rpx;
+    font-size: 20rpx;
+    font-weight: 600;
+    letter-spacing: 0.5rpx;
+  }
+}
+
+.plan-card--active {
+  border-color: rgba(61, 122, 90, 0.35);
+  background: linear-gradient(145deg, #F2FAF5, #E8F7EE);
+  box-shadow: 0 4rpx 28rpx rgba(30, 77, 52, 0.12);
+}
+
+// ── Meal slots ──────────────────────────────────────────
+.meal-slot {
+  background: var(--card);
+  border-radius: 28rpx;
+  margin: 0 32rpx 16rpx;
+  padding: 24rpx 28rpx;
+  box-shadow: 0 2rpx 16rpx rgba(8, 14, 8, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  border: 1rpx solid transparent;
+
+  .meal-ico {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40rpx;
+    flex-shrink: 0;
+  }
+
+  .meal-info  { flex: 1; }
+  .meal-nm    { display: block; font-size: 27rpx; font-weight: 600; color: var(--text); }
+  .meal-ds    { display: block; font-size: 22rpx; color: var(--text3); margin-top: 4rpx; }
+
+  .meal-kc {
+    font-family: var(--font-mono);
+    font-size: 26rpx;
+    font-weight: 600;
+    color: var(--amber);
+  }
+
+  .meal-arr {
+    font-size: 28rpx;
+    color: var(--border);
+  }
+}
+
+.meal-add {
+  border: 1rpx dashed var(--border);
+  box-shadow: none;
+  background: transparent;
+
+  .meal-ico-add  { background: var(--bg); font-size: 36rpx; color: var(--text3); }
+  .meal-nm-muted { color: var(--text3); font-weight: 400; }
+}
+
+// ── Empty state ──────────────────────────────────────────
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64rpx 40rpx 72rpx;
+  margin: 0 32rpx 24rpx;
+  background: var(--card);
+  border-radius: 36rpx;
+  box-shadow: var(--shadow);
+}
+
+.empty-emoji {
+  font-size: 80rpx;
+  margin-bottom: 28rpx;
+  opacity: 0.85;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text3);
+  margin-bottom: 44rpx;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.empty-cta {
+  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  border-radius: 999rpx;
+  padding: 28rpx 64rpx;
+  box-shadow: 0 8rpx 28rpx rgba(30, 77, 52, 0.28);
+}
+
+.empty-cta-text {
+  color: #F0ECE0;
+  font-size: 30rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}

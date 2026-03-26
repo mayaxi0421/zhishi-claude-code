@@ -1,0 +1,533 @@
+// ═══════════════════════════════════════════════
+// Profile Page — Personal Health Record
+// Concept: A refined health passport
+// Stats shown as oversized monospace figures,
+// data structured with editorial precision.
+// ═══════════════════════════════════════════════
+
+.prf-scroll {
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+// ── Hero ──────────────────────────────────────────────────
+.prf-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 88rpx 32rpx 52rpx;
+
+  &--healthy {
+    background: linear-gradient(160deg, #0C1E0E 0%, #1E4D34 45%, #3D7A5A 100%);
+  }
+
+  &--chronic {
+    background: linear-gradient(160deg, #1A253A 0%, #2A3E6A 50%, #4A62A8 100%);
+  }
+}
+
+.prf-avatar {
+  width: 136rpx;
+  height: 136rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.25);
+}
+
+.prf-avatar-emoji { font-size: 72rpx; }
+
+.prf-name {
+  font-family: var(--font-serif);
+  font-size: 42rpx;
+  font-weight: 700;
+  color: #F0ECE0;
+  margin-bottom: 8rpx;
+  letter-spacing: 2rpx;
+}
+
+.prf-join {
+  font-size: 22rpx;
+  color: rgba(240, 236, 224, 0.6);
+  margin-bottom: 24rpx;
+  letter-spacing: 1rpx;
+}
+
+.prf-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  justify-content: center;
+  margin-top: 4rpx;
+}
+
+.prf-hero-tag {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1rpx solid rgba(255, 255, 255, 0.22);
+  border-radius: 999rpx;
+  padding: 8rpx 20rpx;
+}
+
+.prf-hero-tag-text {
+  color: rgba(240, 236, 224, 0.85);
+  font-size: 22rpx;
+}
+
+// ── Stats row — oversized data figures ────────────────────
+.prf-stats-row {
+  display: flex;
+  background: var(--card);
+  margin: 0 32rpx;
+  border-radius: 36rpx;
+  margin-top: -28rpx;
+  padding: 32rpx 0;
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+  position: relative;
+}
+
+.prf-stat-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx;
+  border-right: 1rpx solid var(--border);
+
+  &:last-child { border-right: none; }
+}
+
+.prf-stat-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 3rpx;
+}
+
+.prf-stat-val {
+  font-family: var(--font-mono);
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.prf-stat-unit {
+  font-size: 18rpx;
+  color: var(--text3);
+  font-weight: 400;
+}
+
+.prf-stat-label {
+  font-size: 20rpx;
+  color: var(--text3);
+  letter-spacing: 0.5rpx;
+}
+
+// ── Section cards ─────────────────────────────────────────
+.prf-section-card {
+  background: var(--card);
+  border-radius: 36rpx;
+  margin: 24rpx 32rpx 0;
+  padding: 36rpx;
+  box-shadow: var(--shadow);
+}
+
+.prf-section-title {
+  font-size: 20rpx;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 28rpx;
+}
+
+.prf-empty-text {
+  font-size: 26rpx;
+  color: var(--text3);
+}
+
+// ── Goal rows ──────────────────────────────────────────────
+.prf-goal-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.prf-goal-row {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  padding: 18rpx 20rpx;
+  background: var(--bg);
+  border-radius: 18rpx;
+}
+
+.prf-goal-icon  { font-size: 38rpx; flex-shrink: 0; }
+.prf-goal-info  { display: flex; flex-direction: column; gap: 4rpx; }
+.prf-goal-label { font-size: 21rpx; color: var(--text3); }
+.prf-goal-value { font-size: 28rpx; font-weight: 600; color: var(--text); }
+
+// ── Diet preference chips ──────────────────────────────────
+.prf-pref-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+
+.prf-pref-chip {
+  background: var(--green-l);
+  border: 1rpx solid rgba(61, 122, 90, 0.3);
+  border-radius: 999rpx;
+  padding: 10rpx 22rpx;
+}
+
+.prf-pref-chip-text {
+  font-size: 25rpx;
+  color: #1A3A22;
+  font-weight: 500;
+}
+
+// ── Allergy chips ─────────────────────────────────────────
+.prf-allergy-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+
+.prf-allergy-chip {
+  background: #FDF0EC;
+  border: 1rpx solid #E8BAA8;
+  border-radius: 999rpx;
+  padding: 10rpx 22rpx;
+}
+
+.prf-allergy-chip-text {
+  font-size: 25rpx;
+  color: #6E2020;
+  font-weight: 500;
+}
+
+// ── Diseases section ───────────────────────────────────────
+.prf-diseases-section {
+  margin: 24rpx 32rpx 0;
+}
+
+.prf-diseases-heading {
+  font-size: 20rpx;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 20rpx;
+  padding-left: 4rpx;
+}
+
+.prf-disease-card {
+  background: var(--card);
+  border-radius: 36rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+  box-shadow: var(--shadow);
+  border: 1rpx solid var(--border);
+}
+
+.prf-disease-header {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 28rpx 32rpx;
+}
+
+.prf-disease-icon-box {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 22rpx;
+  background: var(--green-l);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prf-disease-icon { font-size: 38rpx; }
+
+.prf-disease-title-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.prf-disease-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.prf-disease-badge {
+  display: inline-flex;
+  background: var(--green-l);
+  border-radius: 8rpx;
+  padding: 4rpx 14rpx;
+  align-self: flex-start;
+  border: 1rpx solid rgba(61, 122, 90, 0.25);
+}
+
+.prf-disease-badge-text {
+  font-size: 19rpx;
+  color: #1A3A22;
+  font-weight: 600;
+}
+
+.prf-disease-chevron {
+  font-size: 32rpx;
+  color: var(--border);
+}
+
+// Disease body
+.prf-disease-body {
+  padding: 0 32rpx 32rpx;
+  border-top: 1rpx solid var(--border);
+}
+
+.prf-metrics-row {
+  display: flex;
+  gap: 14rpx;
+  margin-top: 28rpx;
+  margin-bottom: 24rpx;
+}
+
+.prf-metric-cell {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 18rpx;
+  padding: 18rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+
+  &--warn {
+    background: #FDF2EE;
+    border: 1rpx solid #E8BAA8;
+  }
+}
+
+.prf-metric-label { font-size: 21rpx; color: var(--text3); }
+
+.prf-metric-value {
+  font-family: var(--font-mono);
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--text);
+
+  &--warn { color: var(--red); }
+}
+
+.prf-metric-warn-tag {
+  font-size: 19rpx;
+  color: var(--red);
+  background: #F8DADA;
+  border-radius: 8rpx;
+  padding: 2rpx 10rpx;
+  align-self: flex-start;
+}
+
+.prf-log-btn {
+  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  border-radius: 18rpx;
+  padding: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28rpx;
+  box-shadow: 0 6rpx 20rpx rgba(30, 77, 52, 0.25);
+}
+
+.prf-log-btn-text {
+  color: #F0ECE0;
+  font-size: 28rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+}
+
+.prf-principles { margin-bottom: 24rpx; }
+
+.prf-principles-title {
+  font-size: 20rpx;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.prf-principle-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14rpx;
+  margin-bottom: 12rpx;
+}
+
+.prf-principle-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: var(--green);
+  margin-top: 12rpx;
+  flex-shrink: 0;
+}
+
+.prf-principle-text {
+  font-size: 26rpx;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.prf-supp-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.prf-supp-pill {
+  background: var(--green-l);
+  border: 1rpx solid rgba(61, 122, 90, 0.28);
+  border-radius: 999rpx;
+  padding: 10rpx 20rpx;
+}
+
+.prf-supp-pill-text {
+  font-size: 21rpx;
+  color: #1A3A22;
+}
+
+// ── Supplement reminders list ─────────────────────────────
+.prf-supps-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.prf-supp-row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid var(--border);
+
+  &:last-child { border-bottom: none; }
+}
+
+.prf-supp-check {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &--done {
+    background: var(--green);
+    border-color: var(--green);
+  }
+}
+
+.prf-supp-check-icon { color: #fff; font-size: 24rpx; font-weight: 700; }
+
+.prf-supp-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.prf-supp-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text);
+
+  &--done { color: var(--text3); text-decoration: line-through; }
+}
+
+.prf-supp-time { font-size: 21rpx; color: var(--text3); }
+
+.prf-supp-done-tag {
+  font-size: 21rpx;
+  color: var(--green);
+  background: var(--green-l);
+  border-radius: 8rpx;
+  padding: 4rpx 14rpx;
+}
+
+// ── Chat card ─────────────────────────────────────────────
+.prf-chat-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #E8F4ED, #D8EEE2);
+  border: 1rpx solid rgba(61, 122, 90, 0.3);
+  border-radius: 36rpx;
+  margin: 24rpx 32rpx 0;
+  padding: 32rpx;
+}
+
+.prf-chat-left {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.prf-chat-icon { font-size: 48rpx; }
+
+.prf-chat-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #0C1E0E;
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.prf-chat-sub { font-size: 22rpx; color: #2A5038; }
+
+.prf-chat-btn {
+  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  border-radius: 999rpx;
+  padding: 16rpx 32rpx;
+  flex-shrink: 0;
+  box-shadow: 0 4rpx 16rpx rgba(30, 77, 52, 0.3);
+}
+
+.prf-chat-btn-text { color: #F0ECE0; font-size: 26rpx; font-weight: 600; }
+
+.prf-bottom-space { height: 48rpx; }
+
+// ── Empty state ───────────────────────────────────────────
+.prf-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 60rpx;
+  gap: 24rpx;
+}
+
+.prf-empty-emoji  { font-size: 96rpx; }
+.prf-empty-title  { font-family: var(--font-serif); font-size: 40rpx; font-weight: 700; color: var(--text); }
+.prf-empty-desc   { font-size: 28rpx; color: var(--text3); text-align: center; line-height: 1.6; }
+
+.prf-empty-btn {
+  margin-top: 16rpx;
+  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  border-radius: 999rpx;
+  padding: 24rpx 64rpx;
+  box-shadow: 0 8rpx 28rpx rgba(30, 77, 52, 0.25);
+}
+
+.prf-empty-btn-text { color: #F0ECE0; font-size: 32rpx; font-weight: 600; }

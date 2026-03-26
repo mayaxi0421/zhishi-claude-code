@@ -1,0 +1,171 @@
+// ═══════════════════════════════════════════════
+// Voice Recording Overlay — Shared
+// Used by: assistant & onboard pages
+// Concept: Dark recording studio, focused calm
+// Forest-dark panel, jade wave bars, precision UI
+// ═══════════════════════════════════════════════
+
+.ast-voice-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 14, 8, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: overlayIn 0.2s ease;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.ast-voice-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36rpx;
+  background: #0E1A0E;
+  border-radius: 48rpx;
+  padding: 64rpx 80rpx 56rpx;
+  min-width: 360rpx;
+  border: 1rpx solid rgba(61, 122, 90, 0.25);
+  box-shadow:
+    0 24rpx 80rpx rgba(8, 14, 8, 0.6),
+    0 0 0 1rpx rgba(61, 122, 90, 0.08);
+  animation: panelIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: scale(0.92) translateY(12rpx); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+// ── Mic ring ──────────────────────────────────────────────
+.ast-voice-ring {
+  width: 152rpx;
+  height: 152rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4A8B68, #1E4D34);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: micPulse 1.6s ease-in-out infinite;
+  box-shadow: 0 8rpx 32rpx rgba(30, 77, 52, 0.45);
+
+  &--cancel {
+    background: linear-gradient(135deg, #C05040, #8A2828);
+    animation: none;
+    box-shadow: 0 8rpx 32rpx rgba(192, 80, 64, 0.4);
+  }
+
+  &--transcribing {
+    background: linear-gradient(135deg, #6868C0, #3838A0);
+    animation: micPulse 1.6s ease-in-out infinite;
+    box-shadow: 0 8rpx 32rpx rgba(104, 104, 192, 0.4);
+  }
+}
+
+.ast-voice-ring-icon {
+  font-size: 68rpx;
+  line-height: 1;
+}
+
+@keyframes micPulse {
+  0%, 100% { box-shadow: 0 8rpx 32rpx rgba(30, 77, 52, 0.45), 0 0 0 0 rgba(61, 122, 90, 0.4); }
+  50%       { box-shadow: 0 8rpx 32rpx rgba(30, 77, 52, 0.45), 0 0 0 24rpx rgba(61, 122, 90, 0); }
+}
+
+// ── Wave bars — symmetric 7-bar display ───────────────────
+.ast-wave-bars {
+  display: flex;
+  align-items: center;
+  gap: 7rpx;
+  height: 60rpx;
+}
+
+.ast-wave-bar {
+  width: 7rpx;
+  border-radius: 4rpx;
+  background: rgba(122, 184, 148, 0.8);
+
+  &--1 { animation: waveBar 0.65s ease-in-out infinite; animation-delay: 0s;     }
+  &--2 { animation: waveBar 0.65s ease-in-out infinite; animation-delay: 0.10s;  }
+  &--3 { animation: waveBar 0.65s ease-in-out infinite; animation-delay: 0.20s;  }
+  &--4 { animation: waveBar 0.65s ease-in-out infinite; animation-delay: 0.30s;  }
+  &--5 { animation: waveBar 0.65s ease-in-out infinite; animation-delay: 0.20s;  }
+  &--6 { animation: waveBar 0.65s ease-in-out infinite; animation-delay: 0.10s;  }
+  &--7 { animation: waveBar 0.65s ease-in-out infinite; animation-delay: 0s;     }
+}
+
+@keyframes waveBar {
+  0%, 100% { height: 10rpx; opacity: 0.4; }
+  50%       { height: 50rpx; opacity: 1; }
+}
+
+// ── Status label ──────────────────────────────────────────
+.ast-voice-status {
+  color: rgba(240, 236, 224, 0.88);
+  font-size: 28rpx;
+  font-weight: 500;
+  letter-spacing: 3rpx;
+  text-transform: uppercase;
+}
+
+// ── Action buttons ────────────────────────────────────────
+.ast-voice-btns {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 4rpx;
+}
+
+.ast-voice-btn {
+  flex: 1;
+  padding: 22rpx 0;
+  border-radius: 999rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 136rpx;
+
+  &--cancel {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1rpx solid rgba(255, 255, 255, 0.15);
+  }
+
+  &--done {
+    background: linear-gradient(135deg, #4A8B68, #1E4D34);
+    box-shadow: 0 4rpx 20rpx rgba(30, 77, 52, 0.4);
+  }
+}
+
+.ast-voice-btn-text {
+  color: #F0ECE0;
+  font-size: 28rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+}
+
+// ── Transcribing dots ─────────────────────────────────────
+.ast-vdots {
+  display: flex;
+  gap: 14rpx;
+}
+
+.ast-vdot {
+  width: 13rpx;
+  height: 13rpx;
+  border-radius: 50%;
+  background: rgba(122, 184, 148, 0.7);
+  animation: vdotBounce 1.2s ease-in-out infinite;
+
+  &--1 { animation-delay: 0s; }
+  &--2 { animation-delay: 0.2s; }
+  &--3 { animation-delay: 0.4s; }
+}
+
+@keyframes vdotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.35; }
+  40%            { transform: translateY(-10rpx); opacity: 1; }
+}

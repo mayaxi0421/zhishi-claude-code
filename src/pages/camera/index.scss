@@ -1,0 +1,405 @@
+// ═══════════════════════════════════════════════
+// Camera Page — Precision Food Instrument
+// Concept: Night-vision precision instrument
+// Forest-dark environment, surgical corner marks,
+// clean cream result sheet with serif food name.
+// ═══════════════════════════════════════════════
+
+.cam-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #0A1208;   // forest-dark (not ocean-blue)
+  position: relative;
+  overflow: hidden;
+}
+
+// ── Back button ──────────────────────────────────────────
+.cam-back {
+  position: absolute;
+  top: 80rpx;
+  left: 32rpx;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1rpx solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.cam-back-text {
+  color: #fff;
+  font-size: 48rpx;
+  line-height: 1;
+  margin-top: -4rpx;
+}
+
+// ── Camera / preview area ────────────────────────────────
+.cam-area {
+  flex: 1;
+  position: relative;
+  background: #0A1208;
+  overflow: hidden;
+}
+
+.cam-live {
+  width: 100%;
+  height: 100%;
+}
+
+.cam-preview-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cam-preview-img {
+  width: 100%;
+  height: 100%;
+}
+
+// ── Permission denied ────────────────────────────────────
+.cam-no-cam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24rpx;
+}
+
+.cam-no-cam-icon { font-size: 100rpx; line-height: 1; }
+.cam-no-cam-text { color: rgba(255, 255, 255, 0.45); font-size: 28rpx; }
+
+// ── Corner brackets overlay ──────────────────────────────
+.cam-corners-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+// Delicate surgical corner marks — thinner, more precise
+.cam-corner {
+  position: absolute;
+  width: 56rpx;
+  height: 56rpx;
+  border-color: rgba(157, 218, 180, 0.75);
+  border-style: solid;
+
+  &--tl { top: 64rpx; left: 64rpx;    border-width: 3rpx 0 0 3rpx; border-radius: 8rpx 0 0 0; }
+  &--tr { top: 64rpx; right: 64rpx;   border-width: 3rpx 3rpx 0 0; border-radius: 0 8rpx 0 0; }
+  &--bl { bottom: 64rpx; left: 64rpx;  border-width: 0 0 3rpx 3rpx; border-radius: 0 0 0 8rpx; }
+  &--br { bottom: 64rpx; right: 64rpx; border-width: 0 3rpx 3rpx 0; border-radius: 0 0 8rpx 0; }
+}
+
+// ── Scan line ────────────────────────────────────────────
+.cam-scan-line {
+  position: absolute;
+  left: 84rpx;
+  right: 84rpx;
+  height: 2rpx;
+  border-radius: 1rpx;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(100, 200, 140, 0.6) 25%,
+    rgba(140, 220, 170, 0.9) 50%,
+    rgba(100, 200, 140, 0.6) 75%,
+    transparent);
+  animation: camScan 2.4s linear infinite;
+  top: 64rpx;
+}
+
+@keyframes camScan {
+  0%   { top: 64rpx;  opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { top: calc(100% - 64rpx); opacity: 0; }
+}
+
+// ── Hint text ─────────────────────────────────────────────
+.cam-hint {
+  position: absolute;
+  bottom: 24rpx;
+  left: 0;
+  right: 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 25rpx;
+  text-align: center;
+  letter-spacing: 1rpx;
+  pointer-events: none;
+
+  &--error { color: #E8917A; }
+}
+
+// ── Recognizing overlay ──────────────────────────────────
+.cam-recognizing-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 18, 8, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32rpx;
+  z-index: 30;
+}
+
+.cam-recognizing-text {
+  color: rgba(240, 236, 224, 0.92);
+  font-size: 30rpx;
+  font-weight: 500;
+  letter-spacing: 3rpx;
+}
+
+// ── Controls bar ─────────────────────────────────────────
+.cam-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 36rpx 60rpx 60rpx;
+  background: #0D1A0B;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.05);
+}
+
+.cam-ctrl-side {
+  width: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+}
+
+.cam-ctrl-emoji { font-size: 48rpx; line-height: 1; }
+.cam-ctrl-label { color: rgba(255, 255, 255, 0.45); font-size: 21rpx; letter-spacing: 0.5rpx; }
+
+// ── Capture button ───────────────────────────────────────
+.cam-capture-outer {
+  width: 152rpx;
+  height: 152rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3rpx solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 8rpx rgba(61, 122, 90, 0.08);
+}
+
+.cam-capture-inner {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4A8B68, #1E4D34);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 24rpx rgba(30, 77, 52, 0.5);
+
+  &--error { background: linear-gradient(135deg, #C05040, #8A2828); }
+}
+
+.cam-capture-icon { font-size: 52rpx; line-height: 1; }
+
+// ── Result sheet ──────────────────────────────────────────
+.cam-result-mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 50;
+}
+
+.cam-result-sheet {
+  background: #FEFBF4;
+  border-radius: 48rpx 48rpx 0 0;
+  padding: 0 36rpx 60rpx;
+  max-height: 88vh;
+  overflow-y: auto;
+  animation: slideUp 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.cam-sheet-handle {
+  width: 64rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background: #D4CEC0;
+  margin: 20rpx auto 40rpx;
+}
+
+// ── Food header ───────────────────────────────────────────
+.cam-food-header {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 36rpx;
+}
+
+.cam-food-emoji-box {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 24rpx;
+  background: var(--green-l);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cam-food-emoji-lg { font-size: 56rpx; }
+.cam-food-meta     { flex: 1; }
+
+.cam-food-name {
+  font-family: var(--font-serif);
+  font-size: 38rpx;
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  margin-bottom: 6rpx;
+  letter-spacing: 0.5rpx;
+}
+
+.cam-food-desc { font-size: 24rpx; color: var(--text3); }
+
+.cam-kcal-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #F8EAD8;
+  border-radius: 16rpx;
+  padding: 14rpx 20rpx;
+  flex-shrink: 0;
+  border: 1rpx solid #E8C89C;
+}
+
+.cam-kcal-num  {
+  font-family: var(--font-mono);
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #8A4820;
+  line-height: 1;
+}
+
+.cam-kcal-unit { font-size: 19rpx; color: #A05828; margin-top: 2rpx; }
+
+// ── Nutrition grid ────────────────────────────────────────
+.cam-nutrition-grid {
+  display: flex;
+  border: 1rpx solid var(--border);
+  border-radius: 24rpx;
+  overflow: hidden;
+  margin-bottom: 32rpx;
+  background: var(--card);
+}
+
+.cam-nutrition-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28rpx 0;
+  border-right: 1rpx solid var(--border);
+
+  &:last-child { border-right: none; }
+}
+
+.cam-nutrition-val {
+  font-family: var(--font-mono);
+  font-size: 34rpx;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8rpx;
+}
+
+.cam-nutrition-lbl { font-size: 21rpx; color: var(--text3); }
+
+// ── Advice box ────────────────────────────────────────────
+.cam-advice-box {
+  background: linear-gradient(135deg, #E8F4ED, #DAEEE2);
+  border-radius: 24rpx;
+  padding: 28rpx;
+  margin-bottom: 28rpx;
+  border: 1rpx solid #BAD8C4;
+}
+
+.cam-advice-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #1A3A24;
+  display: block;
+  margin-bottom: 12rpx;
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
+}
+
+.cam-advice-body { font-size: 26rpx; color: #2A5038; line-height: 1.75; }
+
+// ── Traffic lights ────────────────────────────────────────
+.cam-lights-list { margin-bottom: 36rpx; }
+
+.cam-light-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid var(--border);
+
+  &:last-child { border-bottom: none; }
+}
+
+.cam-light-dot  { width: 16rpx; height: 16rpx; border-radius: 50%; flex-shrink: 0; }
+.cam-light-text { font-size: 26rpx; color: var(--text); line-height: 1.5; }
+
+// ── Allergen warning ──────────────────────────────────────
+.cam-allergen-box {
+  background: #FDF2EE;
+  border: 1rpx solid #E8BAA8;
+  border-radius: 20rpx;
+  padding: 24rpx 28rpx;
+  margin-bottom: 28rpx;
+}
+
+.cam-allergen-title { display: block; font-size: 24rpx; font-weight: 600; color: #7A2828; margin-bottom: 8rpx; }
+.cam-allergen-body  { font-size: 26rpx; color: #5A1E1E; line-height: 1.6; }
+
+// ── Button row ────────────────────────────────────────────
+.cam-btn-row {
+  display: flex;
+  gap: 20rpx;
+}
+
+.cam-retake-btn {
+  flex: 1;
+  border: 1rpx solid var(--border);
+  border-radius: 56rpx;
+  padding: 36rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cam-retake-text { color: var(--text2); font-size: 30rpx; font-weight: 600; }
+
+.cam-record-btn {
+  flex: 2;
+  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  border-radius: 56rpx;
+  padding: 36rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 28rpx rgba(30, 77, 52, 0.3);
+}
+
+.cam-record-text { color: #F0ECE0; font-size: 30rpx; font-weight: 700; letter-spacing: 2rpx; }

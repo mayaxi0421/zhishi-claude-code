@@ -1,0 +1,70 @@
+// ═══════════════════════════════════════════════════════════
+// 知食 Design System — 玉简 (Jade Tablet)
+// Palette: Deep jade × warm parchment × terracotta amber
+// Typography: Songti SC serif · PingFang sans · SF Mono data
+// Target: Young health-conscious users seeking refined wellness
+// ═══════════════════════════════════════════════════════════
+
+page {
+  // ── Brand: Jade ──────────────────────────────
+  --green:    #3D7A5A;   // jade medium
+  --green-l:  #DFF0E7;   // pale jade
+  --green-d:  #1E4D34;   // deep jade (power color)
+
+  // ── Accent ───────────────────────────────────
+  --amber:    #C26B38;   // burnt terracotta
+  --red:      #B84040;   // warm rose
+  --blue:     #3D6E9E;   // slate blue
+
+  // ── Surfaces ─────────────────────────────────
+  --bg:       #EDE8D8;   // warm parchment
+  --card:     #FEFBF4;   // cream white
+
+  // ── Text ─────────────────────────────────────
+  --text:     #080E08;   // ink black
+  --text2:    #4E6450;   // moss
+  --text3:    #8A9E88;   // sage dust
+
+  // ── UI Chrome ────────────────────────────────
+  --border:   #D4CEC0;   // warm linen
+  --shadow:   0 2rpx 24rpx rgba(8, 14, 8, 0.07);
+  --shadow-md:0 6rpx 40rpx rgba(8, 14, 8, 0.11);
+  --radius:   20rpx;
+
+  // ── Typography ───────────────────────────────
+  // Songti SC on iOS; fallback Georgia on others
+  --font-serif: 'Songti SC', 'STSong', Georgia, serif;
+  // PingFang SC on iOS; Helvetica Neue elsewhere
+  --font-sans:  -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  // SF Mono for all numeric / data display
+  --font-mono:  'SF Mono', Menlo, Consolas, 'Courier New', monospace;
+
+  background-color: var(--bg);
+  font-family: var(--font-sans);
+  font-size: 28rpx;
+  color: var(--text);
+}
+
+// ── Utility layout ─────────────────────────────────────────
+.card {
+  background: var(--card);
+  border-radius: 36rpx;
+  box-shadow: var(--shadow);
+  padding: 36rpx;
+  margin: 0 32rpx 24rpx;
+}
+
+.flex            { display: flex; }
+.flex-1          { flex: 1; }
+.items-center    { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-16          { gap: 16rpx; }
+.gap-20          { gap: 20rpx; }
+
+// ── Utility text ───────────────────────────────────────────
+.text-green  { color: var(--green); }
+.text-amber  { color: var(--amber); }
+.text-red    { color: var(--red); }
+.text-gray   { color: var(--text2); }
+.font-bold   { font-weight: 700; }
+.font-600    { font-weight: 600; }
