@@ -141,6 +141,145 @@
   font-weight: 500;
 }
 
+.qrs--locked { opacity: 0.35; pointer-events: none; }
+.qr--locked  { cursor: default; }
+
+// ── Multi-select ───────────────────────────────────────────
+.ob-multi-wrap { margin-top: 16rpx; }
+
+.ob-multi-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+  margin-bottom: 20rpx;
+}
+
+.ob-multi-chip {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 14rpx 22rpx;
+  background: #F9FAFB;
+  border: 1.5rpx solid #D1D5DB;
+  border-radius: 20rpx;
+  transition: all 0.18s ease;
+
+  &--sel {
+    background: #ECFDF5;
+    border-color: #10B981;
+  }
+}
+
+.ob-multi-check {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 8rpx;
+  border: 1.5rpx solid #9CA3AF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &--sel {
+    background: #10B981;
+    border-color: #10B981;
+  }
+}
+
+.ob-multi-tick { font-size: 20rpx; color: #fff; font-weight: 700; }
+
+.ob-multi-label {
+  font-size: 25rpx;
+  color: #374151;
+  .ob-multi-chip--sel & { color: #065F46; font-weight: 600; }
+}
+
+.ob-multi-confirm {
+  padding: 22rpx;
+  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  border-radius: 20rpx;
+  text-align: center;
+
+  &--off {
+    background: #E5E7EB;
+  }
+}
+.ob-multi-confirm-text {
+  font-size: 27rpx;
+  font-weight: 600;
+  color: #F0ECE0;
+  .ob-multi-confirm--off & { color: #9CA3AF; }
+}
+
+// ── Number picker ─────────────────────────────────────────
+.ob-num-wrap { margin-top: 20rpx; }
+
+.ob-num-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.ob-num-btn {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1.5rpx solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  active-opacity: 0.6;
+}
+.ob-num-btn-txt { font-size: 44rpx; color: #3D7A5A; font-weight: 300; line-height: 1; }
+
+.ob-num-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+  min-width: 200rpx;
+  justify-content: center;
+}
+.ob-num-val {
+  font-size: 80rpx;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.ob-num-unit { font-size: 28rpx; color: var(--text2); font-weight: 500; }
+
+.ob-num-fast-row {
+  display: flex;
+  gap: 14rpx;
+  justify-content: center;
+  margin-bottom: 24rpx;
+}
+.ob-num-fast {
+  padding: 10rpx 28rpx;
+  background: var(--bg);
+  border: 1rpx solid var(--border);
+  border-radius: 999rpx;
+}
+.ob-num-fast-txt { font-size: 24rpx; color: var(--text2); font-weight: 500; }
+
+.ob-num-confirm {
+  padding: 26rpx;
+  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  border-radius: 20rpx;
+  text-align: center;
+  box-shadow: 0 6rpx 20rpx rgba(30, 77, 52, 0.28);
+}
+.ob-num-confirm-txt {
+  font-size: 29rpx;
+  font-weight: 700;
+  color: #F0ECE0;
+  letter-spacing: 1rpx;
+}
+
 // ── Profile summary card ──────────────────────────────────
 .prof-card {
   background: linear-gradient(135deg, #3D7A5A, #1E4D34);
@@ -162,10 +301,13 @@
   .prof-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 25rpx;
     color: rgba(240, 236, 224, 0.85);
     margin-bottom: 14rpx;
   }
+  .prof-row-key { color: rgba(240, 236, 224, 0.6); }
+  .prof-row-val { color: #F0ECE0; font-weight: 600; max-width: 60%; text-align: right; }
 }
 
 .start-btn {
