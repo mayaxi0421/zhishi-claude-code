@@ -4,7 +4,7 @@ import { useUserStore } from './store/userStore'
 import './app.scss'
 
 function App({ children }: { children: React.ReactNode }) {
-  const { loadFromStorage } = useUserStore()
+  const { loadFromStorage, loadProfileFromCloud } = useUserStore()
 
   useEffect(() => {
     // Init WeChat Cloud
@@ -39,8 +39,9 @@ function App({ children }: { children: React.ReactNode }) {
       return
     }
 
-    // Restore data from local storage
+    // Restore local data first (fast), then sync from cloud (non-blocking)
     loadFromStorage()
+    loadProfileFromCloud().catch(() => {})
   }, [])
 
   return <>{children}</>

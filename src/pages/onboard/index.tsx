@@ -44,7 +44,7 @@ export default function Onboard() {
   const recorderRef = useRef<any>(null)
   const shouldTranscribeRef = useRef(false)
   const voiceStateRef = useRef<'idle' | 'recording' | 'transcribing'>('idle')
-  const { setProfile } = useUserStore()
+  const { setProfile, syncProfileToCloud } = useUserStore()
 
   function setVS(s: 'idle' | 'recording' | 'transcribing') {
     voiceStateRef.current = s
@@ -141,6 +141,9 @@ export default function Onboard() {
       : []
     const allergies = answers[4] === '都不过敏' ? [] : (answers[4] || '').split(',').map(s=>s.trim()).filter(Boolean)
     setProfile({ conditions, allergies })
+    // Cloud sync (fire and forget)
+    const updated = useUserStore.getState().profile
+    if (updated) syncProfileToCloud(updated).catch(() => {})
     setShowProfile(true)
   }
 

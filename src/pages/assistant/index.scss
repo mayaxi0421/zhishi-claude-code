@@ -26,6 +26,14 @@
 
 .ast-header-char { flex-shrink: 0; }
 
+.ast-clear-btn {
+  margin-left: auto;
+  padding: 10rpx 24rpx;
+  border-radius: 999rpx;
+  background: rgba(0,0,0,0.06);
+}
+.ast-clear-text { font-size: 24rpx; color: var(--text3); }
+
 .ast-header-info {
   display: flex;
   flex-direction: column;

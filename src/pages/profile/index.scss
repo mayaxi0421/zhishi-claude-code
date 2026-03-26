@@ -531,3 +531,87 @@
 }
 
 .prf-empty-btn-text { color: #F0ECE0; font-size: 32rpx; font-weight: 600; }
+
+// ── Metric log modal ───────────────────────────────────────────────────────
+.prf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 14, 8, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.prf-modal {
+  background: var(--card);
+  border-radius: 40rpx;
+  padding: 56rpx 48rpx 44rpx;
+  width: 620rpx;
+  box-shadow: 0 24rpx 80rpx rgba(8, 14, 8, 0.25);
+}
+
+.prf-modal-title {
+  font-family: var(--font-serif);
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  margin-bottom: 40rpx;
+}
+
+.prf-modal-field { margin-bottom: 32rpx; }
+
+.prf-modal-label {
+  font-size: 24rpx;
+  color: var(--text3);
+  display: block;
+  margin-bottom: 10rpx;
+  letter-spacing: 1rpx;
+}
+
+.prf-modal-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1rpx solid var(--border);
+  border-radius: 20rpx;
+  padding: 22rpx 28rpx;
+  font-size: 32rpx;
+  font-family: var(--font-mono);
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.prf-modal-btns {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 40rpx;
+}
+
+.prf-modal-cancel {
+  flex: 1;
+  padding: 26rpx 0;
+  border-radius: 999rpx;
+  background: rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prf-modal-save {
+  flex: 1;
+  padding: 26rpx 0;
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, #3D7A5A, #1E4D34);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(30, 77, 52, 0.3);
+}
+
+.prf-modal-btn-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text2);
+  &--save { color: #F0ECE0; }
+}

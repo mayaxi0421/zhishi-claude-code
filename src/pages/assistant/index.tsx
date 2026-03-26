@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro'
 import { View, Text, ScrollView, Input } from '@tarojs/components'
 import { XiaoZhi, XiaoZhiMood } from '../../components/XiaoZhi'
 import { callCloud } from '../../services/cloud'
+import { useUserStore } from '../../store/userStore'
 import './index.scss'
 
 interface Message {
@@ -17,33 +18,29 @@ type VoiceState = 'idle' | 'recording' | 'transcribing'
 const QUICK_CHIPS = [
   '今天能吃火锅吗？',
   '减重早餐推荐',
-  '膳食纤维不足',
-  '血糖偏高饮食',
+  '膳食纤维不足怎么办',
+  '血糖偏高饮食建议',
 ]
 
-const PRESET_ANSWERS: Record<string, string> = {
-  '今天能吃火锅吗？': '可以吃，推荐清汤锅底。\n\n🟢 多选：豆腐、菌菇、绿叶菜\n🟡 适量：牛肉、粉丝\n🔴 避免：海鲜（你过敏）、动物内脏\n\n今日热量剩余 420kcal，建议控制在 1 小时内。',
-  '减重早餐推荐': '根据你的减重目标推荐：\n\n1. 🥣 燕麦+水煮蛋+脱脂奶 — 350kcal\n2. 🥗 全麦面包+牛油果+番茄 — 300kcal\n3. 🫙 希腊酸奶+蓝莓+坚果 — 280kcal\n\n避免：白粥、油条、甜豆浆（升糖快）',
-  '膳食纤维不足': '本周纤维只达到 55%，简单改善方法：\n\n• 每天加一份深色绿叶菜\n• 白米换糙米或杂粮饭\n• 加餐选苹果或梨（带皮）\n• 每天喝够 1500ml 水\n\n目标：每天 25g，你现在约 14g。',
-  '血糖偏高饮食': '根据你血糖偏高的情况：\n\n🔴 避免：白米饭、白面包、含糖饮料、荔枝龙眼\n🟡 限量：土豆、玉米、西瓜\n🟢 多吃：绿叶菜、豆类、鸡胸肉\n\n💡 进食顺序很重要：蔬菜→蛋白质→主食，能有效减缓血糖上升。',
-}
-
-const DEFAULT_ANSWER = '这是个好问题！根据你的健康档案，建议保持均衡饮食，多吃蔬菜和优质蛋白，控制精制碳水的摄入。有其他问题随时问我～'
+const CHAT_KEY = 'chatHistory'
 
 function getTimeStr() {
   const now = new Date()
   return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`
 }
 
-const WELCOME: Message = {
-  id: 'welcome',
-  role: 'bot',
-  content: '你好！我是小知 🌿\n\n我已读取你的健康档案，可以根据你的身体状况、饮食目标和今日进食情况为你提供个性化建议。\n\n有什么想问的？',
-  time: getTimeStr(),
+function makeWelcome(): Message {
+  return {
+    id: 'welcome',
+    role: 'bot',
+    content: '你好！我是小知 🌿\n\n我已读取你的健康档案，可以根据你的身体状况、饮食目标和今日进食情况为你提供个性化建议。\n\n有什么想问的？',
+    time: getTimeStr(),
+  }
 }
 
 export default function Assistant() {
-  const [messages, setMessages] = useState<Message[]>([WELCOME])
+  const { profile } = useUserStore()
+  const [messages, setMessages] = useState<Message[]>([makeWelcome()])
   const [inputVal, setInputVal] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const [headerMood, setHeaderMood] = useState<XiaoZhiMood>('idle')
@@ -59,9 +56,24 @@ export default function Assistant() {
     setVoiceState(s)
   }
 
+  // Load chat history on mount
+  useEffect(() => {
+    try {
+      const saved = Taro.getStorageSync(CHAT_KEY)
+      if (saved) {
+        const hist = JSON.parse(saved) as Message[]
+        if (hist.length > 0) setMessages(hist)
+      }
+    } catch {}
+  }, [])
+
+  // Scroll + save history when messages change
   useEffect(() => {
     setScrollId('msg-' + (messages.length - 1))
     setTimeout(() => setScrollId('msg-end'), 100)
+    if (messages.length > 1) {
+      Taro.setStorageSync(CHAT_KEY, JSON.stringify(messages))
+    }
   }, [messages])
 
   useEffect(() => {
@@ -85,8 +97,7 @@ export default function Assistant() {
         }
       } catch (e: any) {
         setVS('idle')
-        const detail = (e && e.errMsg) ? e.errMsg : String(e)
-        Taro.showModal({ title: '识别失败', content: detail, showCancel: false })
+        Taro.showModal({ title: '识别失败', content: e?.errMsg ?? String(e), showCancel: false })
       }
     })
 
@@ -127,33 +138,57 @@ export default function Assistant() {
     setVS('idle')
   }
 
-  function sendQuery(text: string) {
+  async function sendQuery(text: string) {
     if (!text.trim() || isTyping) return
+
     const userMsg: Message = {
       id: 'msg-' + Date.now(),
       role: 'user',
       content: text.trim(),
       time: getTimeStr(),
     }
-    setMessages(prev => [...prev, userMsg])
+    const newMessages = [...messages, userMsg]
+    setMessages(newMessages)
     setInputVal('')
     setIsTyping(true)
     setHeaderMood('thinking')
 
-    const delay = 900 + Math.random() * 600
-    setTimeout(() => {
-      const answer = PRESET_ANSWERS[text.trim()] ?? DEFAULT_ANSWER
+    try {
+      // Build history for cloud (exclude welcome, convert to API role format)
+      const historyMsgs = newMessages
+        .filter(m => m.id !== 'welcome')
+        .map(m => ({ role: m.role === 'user' ? 'user' : 'assistant', content: m.content }))
+
+      const result = await callCloud('chat', { messages: historyMsgs, profile })
+
       const botMsg: Message = {
         id: 'msg-' + (Date.now() + 1),
         role: 'bot',
-        content: answer,
+        content: result?.content ?? '抱歉，暂时无法回答，请稍后再试～',
         time: getTimeStr(),
       }
       setMessages(prev => [...prev, botMsg])
-      setIsTyping(false)
       setHeaderMood('happy')
       setTimeout(() => setHeaderMood('idle'), 3000)
-    }, delay)
+    } catch (e: any) {
+      Taro.showModal({ title: '发送失败', content: e?.errMsg ?? String(e), showCancel: false })
+      setHeaderMood('idle')
+    } finally {
+      setIsTyping(false)
+    }
+  }
+
+  function clearHistory() {
+    Taro.showModal({
+      title: '清空对话',
+      content: '确定清空所有聊天记录？',
+      success: (res) => {
+        if (res.confirm) {
+          Taro.removeStorageSync(CHAT_KEY)
+          setMessages([makeWelcome()])
+        }
+      },
+    })
   }
 
   return (
@@ -167,6 +202,9 @@ export default function Assistant() {
             {headerMood === 'thinking' ? '思考中…' : '你的 AI 营养助手'}
           </Text>
           <View className={`ast-status-dot ast-status-dot--${headerMood}`} />
+        </View>
+        <View className="ast-clear-btn" onClick={clearHistory}>
+          <Text className="ast-clear-text">清空</Text>
         </View>
       </View>
 
@@ -232,10 +270,7 @@ export default function Assistant() {
             confirmType="send"
           />
         </View>
-        <View
-          className="ast-mic-btn"
-          onClick={handleMicTap}
-        >
+        <View className="ast-mic-btn" onClick={handleMicTap}>
           <Text className="ast-mic-icon">🎤</Text>
         </View>
         <View
