@@ -1,7 +1,7 @@
 {
-  "name": "afu-health",
+  "name": "zhishi",
   "version": "1.0.0",
-  "description": "阿福健康饮食小程序",
+  "description": "知食健康饮食小程序",
   "private": true,
   "scripts": {
     "build:weapp": "taro build --type weapp",

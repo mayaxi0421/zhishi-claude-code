@@ -1,7 +1,7 @@
 import { defineConfig } from '@tarojs/cli'
 
 export default defineConfig({
-  projectName: 'afu-health',
+  projectName: 'zhishi',
   date: '2026-3-25',
   designWidth: 750,
   deviceRatio: {
